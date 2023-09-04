@@ -59,3 +59,8 @@ void signup()
      login();
    }
 }
+int validate()
+{
+
+   
+}
