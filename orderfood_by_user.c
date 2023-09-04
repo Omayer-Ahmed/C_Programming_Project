@@ -37,7 +37,25 @@ while(1)
     }
 
 }
-
 }
+void signup()
+{
+   printf("\n\n ***************welcome to signup page************");
+   printf("\tEnter your name: ");
+   scanf("%s",&temp_name);
+   printf("\tEnter your age:");
+   scanf("%s",&temp_email);
+   printf("\tEnter your password:");
+   scanf("%s",&temp_password1);
+   printf("\tConfirm password:");
+   scanf("%s",&temp_password2);
+   printf("\tEnter your phone number:");
+   scanf("%d",&temp_mobile);
 
- 
+   x=validate();
+   if(x==1)
+   {
+     account_check();
+     login();
+   }
+}
