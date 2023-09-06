@@ -1,4 +1,13 @@
 #include<stdio.h>
+struct detailes
+{
+   char uname[100];
+   int age;
+   char password[100];
+   char email[100];
+   char mobile[10];
+};
+
 
 int main()
 {
