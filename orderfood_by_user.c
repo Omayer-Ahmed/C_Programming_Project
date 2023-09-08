@@ -8,6 +8,17 @@ struct detailes
    char mobile[10];
 };
 
+int flag=1,i,j=0,count=0,caps=0;
+int small=0,special=0,numbers=0;
+int success=0,x,choice;
+char temp_name[100],temp_password1[100];
+char temp_password2[100],temp_email[100];
+char temp_mobile[100];
+int temp_age,total=0,food_choice,n;
+int hotel_choice ,search_choice,confirm;
+int ch,food,hotel_id;
+
+
 
 int main()
 {
@@ -186,4 +197,32 @@ int validate()
       }
    }
    
+}
+
+void account_check().//check whether the account existed or not 
+{
+   for(i=0;i<100;i++)
+   {
+     //check email
+     //check password
+     if(!(strcmp(temp_email,s[i].email)
+        && strcmp(temp_password1,s[i].password)))
+      {
+         printf("\n\nAccount already existed .please login !!\n\n");
+         main();
+         break;
+      }
+   }
+   //if account doesnot exist
+   //then create new one
+   if(i==100)
+   {
+      strcmp(s[j].uname,temp_name);
+      s[j].age=temp_age;
+      strcmp(s[j].password,temp_password1);
+      strcmp(s[j].email,temp_email);
+      strcmp(s[j].mobile,temp_mobile);
+      j++;
+      printf("\n\nAccount successfully created \n\n");
+   } 
 }
