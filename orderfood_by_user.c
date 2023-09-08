@@ -79,7 +79,7 @@ void signup()
      login();
    }
 }
-int validate()
+int validate()//check whether the user input is valid or not
 {
  //valid the name
    for(i=0;temp_name[i]!='\0';i++)
