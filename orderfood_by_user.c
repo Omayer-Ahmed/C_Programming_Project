@@ -1,12 +1,36 @@
 #include<stdio.h>
+//user information
 struct detailes
 {
-   char uname[100];
+   char name[100];
    int age;
    char password[100];
    char email[100];
    char mobile[10];
 };
+
+//hotel and their food details
+struct Hotels
+{
+   char hotel[100];
+   char first_food[20];
+   char second_food[20];
+   char third_food[20];
+   char fourth_food[25];
+   int first,second,third,fourth;
+};
+
+struct hotels m[5];
+struct detailes s[100];
+//function prototype
+void signup();
+void account_check();
+int validate();
+void login();
+void cart();
+void search_by_hotels();
+void search_by_food();
+void food_order(int food);
 
 int flag=1,i,j=0,count=0,caps=0;
 int small=0,special=0,numbers=0;
@@ -79,8 +103,11 @@ void signup()
      login();
    }
 }
-int validate()//check whether the user input is valid or not
+int validate()
 {
+//check whether 
+//the user input is valid or not
+
  //valid the name
    for(i=0;temp_name[i]!='\0';i++)
    {
@@ -107,32 +134,33 @@ int validate()//check whether the user input is valid or not
          //valid password
          //confirm password
 
-         if(!strcmp(stemp_password1,temp_password2))
+         if(!strcmp(temp_password1,temp_password2))
          {
             if(strlen(temp_password1)>=8 && strlen(temp_password1)<=12)
             {
                caps=0;
                small=0;
-               number=0;
+               numbers=0;
                special=0;
                for(i=0;temp_password1[i] !='\0';i++)
                {
-                  if(temp_password[i]>='A'&& temp_password1[i]<='Z')
-                  {
+                  if(temp_password1[i]>='A'&& temp_password1[i]<='Z')
+                  
                   caps++;
-                  }
-                  else if(temp_password1[i]>='a'&& temp_password[i]<='z')
-                  {
+                  
+                  else if(temp_password1[i]>='a'&& temp_password1[i]<='z')
+                  
                      small++;
-                  }
+                  
                   else if(temp_password1[i] >='0'&&temp_password1[i]<='9')
-                  {
+                  
                      numbers++;
-                  }
-                  else if(temp_password[i]=='@' || temp_password1[i]==& || temp_password1[i]=='#'|| temp_password1[i]=='*')
-                  {
+                  
+                  else if(temp_password1[i]=='@' || temp_password1[i]=='&' || temp_password1[i]=='#'|| temp_password1[i]=='*')
+                  
                      special++;
-                  }
+                  
+               }
                   if(caps>=1 && small >=1 && numbers >=1 && special >=1)
                   {
                      //valid the input age
@@ -155,9 +183,15 @@ int validate()//check whether the user input is valid or not
                                   }
                               }  
                               if(success == 1)
-                              {
-                                 return 1;
-                              }    
+                              return 1;
+                                 
+                            }
+                            else
+                            {
+                              printf("\n\nPlease enter the 11 digit mobile number \n");
+                              return 0;
+                            }
+                       }
                               else
                               {
                                  printf("\n\nplease enter your valid age\n");
@@ -177,7 +211,7 @@ int validate()//check whether the user input is valid or not
                      }
                      else
                      {
-                        printf("\nyour password is too short and length would be between 8 to 12"\n\n);
+                        printf("\nyour password is too short and length would be between 8 to 12\n\n");
                         return 0;
                      } 
                   }
@@ -186,20 +220,17 @@ int validate()//check whether the user input is valid or not
                      printf("\npassword does not match");
                      return 0;
                   }
-               }
+      }
                else
                {
                   printf("\nplease enter valid email\n\n");
                   return 0;
                }
-            }
-         }
-      }
-   }
-   
+          }
+      
 }
 
-void account_check().//check whether the account existed or not 
+void account_check()//check whether the account existed or not 
 {
    for(i=0;i<100;i++)
    {
@@ -217,7 +248,7 @@ void account_check().//check whether the account existed or not
    //then create new one
    if(i==100)
    {
-      strcmp(s[j].uname,temp_name);
+      strcmp(s[j].name,temp_name);
       s[j].age=temp_age;
       strcmp(s[j].password,temp_password1);
       strcmp(s[j].email,temp_email);
@@ -225,4 +256,111 @@ void account_check().//check whether the account existed or not
       j++;
       printf("\n\nAccount successfully created \n\n");
    } 
+}
+//use login function
+void login()
+{
+   printf("\n\n***************Welcome to Login Page**************");
+   printf("\tEnter your Email: ");
+   scanf("%s",&temp_email);
+   printf("\tEnter your password: ");
+   scanf("%s",&temp_password1);
+   for(i=0;i<100;i++)
+   {
+      //check whether the input is existed or not 
+      if(!strcmp(s[i].email,temp_email))
+      {
+         if(!strcmp(s[i].password,temp_password1))
+         {
+         printf("\n\nWelcome %s, ",s[i].name);
+         printf("You are successfully");
+         printf("Logged in \n\n");
+         printf("We provide two ways fo search\n");
+         printf("1) Search By Hotels \n");
+         printf("2) Search By Food\n");
+         printf("3)Exit\n\n");
+         printf("Please enter your choice:");
+         scanf("%d ",&search_choice);
+         
+         switch(search_choice)
+         {
+            case 1:
+         {
+            search_by_hotels();
+            break;
+         
+         }
+           case 2:
+           {
+            search_by_food();
+            break;
+           }
+           case 3:
+           {
+            main();
+            return;
+           }
+           default:
+           {
+            printf("Please enter your valid choice\n\n");
+            break;
+           }
+         }
+         break;
+         }
+         else
+         {
+            printf("\n\nInvalid password");
+            printf("\please enter the correct password\n\n");
+            main();
+            break;
+         }
+       }
+       else
+        {
+         printf("\n\nAccount doesnot exist ,\nplease sign up again");
+         main();
+         break;
+        }
+   }
+
+}
+void hotel_initialize()
+{
+   //initializating the hotel name ,food and respective cost
+   //first hotel 
+   strcmp(m[1].hotel,"Kabab Factorary");
+   strcmp(m[1].first_food,"Sandwich");
+   strcmp(m[1].second_food,"Pizza");
+   strcmp(m[1].third_food,"Fried_rice");
+   strcmp(m[1],fourth_food,"Ice_Cream");
+   m[1].first=150;
+   m[1].second=200;
+   m[1].third=120;
+   m[1].fourth=80;
+   
+   //second hotel
+
+   strcmp(m[2].hotel,"TakeOut");
+   strcmp(m[2].first_food,"Parotta");
+   strcmp(m[2].second_food,"Noodles");
+   strcmp(m[2].third_food,"Chicken_Rice");
+   strcmp(m[2].fourth_food,"Dosa");
+   m[2].first=40;
+   m[2].second=100;
+   m[2].third=200;
+   m[2].fourth=120;
+
+
+   //third hotel
+   strcmp(m[3].hotel,"Pizza Hut");
+   strcmp(m[3].first_food,"Chicken_Biriyani");
+   strcmp(m[3].second_food,"Noodles");
+   strcmp(m[3].third_food,"Faloda");
+   strcmp(m[3].fourth_food,"Burger");
+   m[3].first=220;
+   m[3].second=100;
+   m[3].third=150;
+   m[3].fourth=120;
+
 }
