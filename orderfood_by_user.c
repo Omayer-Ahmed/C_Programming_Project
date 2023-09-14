@@ -402,12 +402,12 @@ void hotels(int hotel_choice)
    {
       printf("\n\nList of foods available");
 
-      printf("in %s \n\n1) %s\tRs:%d\n2)",
+      printf("in %s \n\n1) %s\tTk: %d\n2)",
       m[hotel_choice].hotel,
       m[hotel_choice].first_food,
       m[hotel_choice].first);
 
-      printf("%s\t\tRs: %d\n3) %s\tRs: %d\n4)%s\tRs: %d\n5)",
+      printf("%s\t\tTk: %d\n3) %s\tTk: %d\n4)%s\tTk: %d\n5)",
       m[hotel_choice].second_food,
       m[hotel_choice].second,
       m[hotel_choice].third_food,
@@ -555,7 +555,7 @@ void cart()
 {
    printf("\n\n\n\n*****************cart*************");
    printf("\nYour total order");
-   printf("Amount is: %d\n",total);
+   printf(" Amount is: %d\n",total);
    printf("\n\nDo you wish to");
    printf("order (y=1/n=0): ");
    scanf("%d",&ch);
