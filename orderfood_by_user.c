@@ -8,6 +8,7 @@ struct detailes
    char password[100];
    char email[100];
    char mobile[10];
+   char location[30];
 };
 
 //hotel and their food details
@@ -39,11 +40,11 @@ void hotel_initialize();
 void hotels(int hotel_choice);
 
 
-int flag=1,i,j=0,count=0,caps=0;
+int flag=1,loc=1,i,j=0,count=0,caps=0;
 int small=0,special=0,numbers=0;
 int success=0,x,choice;
 char temp_name[100],temp_password1[100];
-char temp_password2[100],temp_email[100];
+char temp_password2[100],temp_email[100],temp_location[40];
 char temp_mobile[100];
 int temp_age,total=0,food_choice,n;
 int hotel_choice ,search_choice,confirm;
@@ -105,6 +106,8 @@ void signup()
    scanf("%s", temp_password2);
    printf("\n\n\tEnter your phone number:");
    scanf("%s", temp_mobile);
+   printf("\n\n\tEnter your location:");
+   scanf("%s", temp_location);
 
    x=validate();
    if(x==1)
@@ -236,7 +239,17 @@ int validate()
                   printf("\nplease enter valid email\n\n");
                   return 0;
                }
-          }
+         }
+              for(i=0;temp_location[i]!='\0';i++)
+               {
+                  if(!((temp_location[i]>='a' && temp_location[i]<=
+                  'z')|| (temp_location[i]>='A'&& temp_location[i]<='Z')))
+                   {
+                      printf("\nPlease Enter your valid name\n");
+                        loc=0;
+                       break;
+                   }
+               }  
       
 }
 
@@ -261,6 +274,7 @@ void account_check()
       strcpy(s[j].password,temp_password1);
       strcpy(s[j].email,temp_email);
       strcpy(s[j].mobile,temp_mobile);
+      strcpy(s[j].location,temp_location);
       j++;
       printf("\n\nAccount successfully created\n\n");
    }
